@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<cart generated="1390447876796" total="$209.97">
+    <item code="dog001">
+        <name>Dog</name>
+        <quantity>2</quantity>
+        <price>$159.98</price>
+    </item>
+    <item code="cha001">
+        <name>Chair</name>
+        <quantity>1</quantity>
+        <price>$49.99</price>
+    </item>
+</cart>
+
+
+{
+  "cart": {
+    "-generated": "1390447876796",
+    "-total": "$209.97",
+    "item": [
+      {
+        "-code": "dog001",
+        "name": "Dog",
+        "quantity": "2",
+        "price": "$159.98"
+      },
+      {
+        "-code": "cha001",
+        "name": "Chair",
+        "quantity": "1",
+        "price": "$49.99"
+      }
+    ]
+  }
+}
