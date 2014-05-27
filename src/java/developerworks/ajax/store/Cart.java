@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.*;
 
 /**
- *Plain old java representation of the shopping cart.
+ * Plain old java representation of the shopping cart.
  * @author  Celine Patag
  */
 public class Cart {
@@ -20,7 +20,7 @@ public class Cart {
 
   /**
    * Adds a named item to the cart
-     * @param itemCode
+   * @param itemCode
    */
   public void addItem(String itemCode) {
 
@@ -41,7 +41,7 @@ public class Cart {
 
   /**
    * Removes the named item from the cart
-     * @param itemCode
+   * @param itemCode
    */
   public void removeItem(String itemCode) {
     Item item = new Catalog().getItem(itemCode);
@@ -57,8 +57,8 @@ public class Cart {
   }
 
     /**
-     *
-     * @return
+     * Creates a JSON representation of the cart contents
+     * @return JSON representation of cart contents
      */
     public String toJSon(){
       StringBuffer jsonSb = new StringBuffer("{\"cart\": {");
@@ -96,6 +96,7 @@ public class Cart {
       
   }
   /**
+   * Method to transform a java cart to its xml representation
    * @return XML representation of cart contents
    */
   public String toXml() {
