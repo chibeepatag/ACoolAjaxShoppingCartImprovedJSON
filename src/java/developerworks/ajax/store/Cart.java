@@ -52,8 +52,14 @@ public class Cart {
         System.out.println("new quantity: "+ newQuantity);
     }else{
         contents.remove(item);    
-    }
-    
+    }    
+  }
+  
+  /**
+   * Clears the content of the cart.
+   */
+  public void clearCart(){
+      contents = new HashMap<Item, Integer>();
   }
 
     /**

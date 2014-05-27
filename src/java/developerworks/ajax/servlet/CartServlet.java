@@ -32,7 +32,7 @@ public class CartServlet extends HttpServlet {
     String action = req.getParameter("action");
     String item = req.getParameter("item");
     
-    if ((action != null)&&(item != null)) {
+    if ((action != null)) {
 
       if ("add".equals(action)) {
         cart.addItem(item);
@@ -40,6 +40,9 @@ public class CartServlet extends HttpServlet {
       } else if ("remove".equals(action)) {
         cart.removeItem(item);
 
+      } else if("clearCart".equals(action)){
+          removeCartFromSession(req);
+          cart = new Cart();
       }
     }
 
@@ -75,5 +78,11 @@ public class CartServlet extends HttpServlet {
     }
 
     return cart;
-  }
+ }
+
+
+private void removeCartFromSession(HttpServletRequest req){
+    HttpSession session = req.getSession(true);
+    session.removeAttribute("cart");  
+}
 }

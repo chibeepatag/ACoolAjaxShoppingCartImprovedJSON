@@ -96,11 +96,21 @@ function removeButtonListener(itemCode){
 
 
 /*
+ * Returns a function that
  * Parses the json Cart response and updates the page via ajax.
  * **/
-function getJSONResponse(req){
+function getJSONResponse(req){//req.responseText
     var updateCartFromJSON = function(){        
-        var  cartJSONObj = jsonParse(req.responseText);
+       updateCart(req.responseText);
+        };//close updateCartFromJSON
+    return updateCartFromJSON;
+}
+
+/*
+ * Parses the json Cart response and updates the page via ajax.
+ * **/
+function updateCart(jsonResponse){    
+        var  cartJSONObj = jsonParse(jsonResponse);
         
         var cart = cartJSONObj.cart;
         var generated = cart.generated;
@@ -141,10 +151,25 @@ function getJSONResponse(req){
             row.appendChild(priceCell);
             row.appendChild(removeBtnCell);
             contents.appendChild(row);
-            }          
+            }
+            var rowClearCart = document.createElement("tr");
+            var clearCartCell = document.createElement("td");
+            var clearCartButton = document.createElement("button");
+            clearCartButton.appendChild(document.createTextNode("Clear Cart"));
+            clearCartButton.addEventListener("click", clearCart);
+            clearCartCell.appendChild(clearCartButton); 
+            rowClearCart.appendChild(clearCartCell);
+            contents.appendChild(rowClearCart);
          }
         
-        document.getElementById("total").innerHTML = cart.total;
-        };//close updateCartFromJSON
-    return updateCartFromJSON;
+        document.getElementById("total").innerHTML = cart.total;       
+}
+
+function clearCart(){    
+    var req = newXMLHttpRequest();
+    req.onreadystatechange = getReadyStateHandler(req, getJSONResponse(req));
+
+    req.open("POST", "cart.do", true);
+    req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    req.send("action=clearCart");
 }
